@@ -44,17 +44,24 @@ export const login = async (req, res) => {
         const match = await bcrypt.compare(password, userFound.password)
         if(!match) return res.status(400).json({message: "Incorrect password"})
     
-        const Token = await createAccessToken({ id:userFound._id })
-        res.cookie('token', Token);
+        const token = await createAccessToken({ id:userFound._id })
+        res.cookie('token', token);
         res.json({
-            id: userSaved._id,
-            userName: userSaved.userName,
-            email: userSaved.email,
-            createdAt: userSaved.createdAt,
-            updatedAt: userSaved.updatedAt,
+            id: userFound._id,
+            userName: userFound.userName,
+            email: userFound.email,
+            createdAt: userFound.createdAt,
+            updatedAt: userFound.updatedAt,
         });
 
     } catch (error) {
         res.status(500).json({message: error.message});
     }
+}
+
+export const logout = (req, res) => {
+    res.cookie('token', "", {
+        expires: new Date(0),
+    });
+    return res.sendStatus(200);
 }
