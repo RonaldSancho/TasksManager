@@ -16,7 +16,13 @@ export const register = async (req, res) => {
         });
     
         const userSaved = await newUser.save();
-        res.json(userSaved)
+        res.json({
+            id: userSaved._id,
+            userName: userSaved.userName,
+            email: userSaved.email,
+            createdAt: userSaved.createdAt,
+            updatedAt: userSaved.updatedAt,
+        })
 
     } catch (error) {
         console.log(error);
