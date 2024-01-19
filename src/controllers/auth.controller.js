@@ -18,15 +18,10 @@ export const register = async (req, res) => {
     
         const userSaved = await newUser.save();
 
-        jwt.sign({
-            id: userSaved._id,
-        }, "secret123", {
-            expiresIn: "1d",
-        },
-        (err, token) => {
-            if(err) console.log(err)
-            res.json({ token })
-        });
+        res.cookie('token', token);
+        res.json({
+            message: "User created"
+        })
 
         // res.json({
         //     id: userSaved._id,
