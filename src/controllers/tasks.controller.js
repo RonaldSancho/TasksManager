@@ -5,7 +5,7 @@ export const getTasks = async (req, res) => {
     res.json(tasksFound);
 }
 
-export const getTask = async (req, res) => {
+export const createTask = async (req, res) => {
     const {title, description, date} = req.body;
 
     const newTask = new Task({
@@ -17,7 +17,11 @@ export const getTask = async (req, res) => {
     res.json(savedTask);
 }
 
-export const createTask = async (req, res) => {}
+export const getTask = async (req, res) => {
+    const task = await Task.findById(req.params.id);
+    if(!task) return res.status(404).json
+    res.json(task);
+}
 
 export const updateTask = async (req, res) => {}
 
