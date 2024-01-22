@@ -1,7 +1,8 @@
-import User from "../models/user.model.js"
+import Task from "../models/task.model.js"
 
 export const getTasks = async (req, res) => {
-    
+    const tasksFound = await Task.find();
+    res.json(tasksFound);
 }
 
 export const getTask = async (req, res) => {}
