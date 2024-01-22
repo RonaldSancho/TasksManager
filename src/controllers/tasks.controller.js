@@ -12,6 +12,7 @@ export const createTask = async (req, res) => {
         title,
         description,
         date,
+        user: req.decode.id
     });
     const savedTask = await newTask.save();
     res.json(savedTask);
