@@ -1,7 +1,9 @@
 import Task from "../models/task.model.js"
 
 export const getTasks = async (req, res) => {
-    const tasksFound = await Task.find();
+    const tasksFound = await Task.find({
+        user: req.decode.id
+    }).populate('user');
     res.json(tasksFound);
 }
 
