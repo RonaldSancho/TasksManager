@@ -1,6 +1,6 @@
 import zod from 'zod'
 
-export const resgiterSchema = zod.object({
+export const registerSchema = zod.object({
     userName: zod.string({
         required_error: 'Username is required'
     }),
