@@ -8,3 +8,21 @@ export const connectDB = async () => {
         console.log(error);
     }
 };
+
+// import sql from 'mssql';
+
+// export const connectDB = async () => {
+//     const config = {
+//         user: 'your_username',
+//         password: 'your_password',
+//         server: 'localhost',
+//         database: 'your_database',
+//     };
+
+//     try {
+//         await sql.connect(config);
+//         console.log(">>> DB is connected");
+//     } catch (error) {
+//         console.error('Error connecting to the database', error);
+//     }
+// };
